@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body{
+        background: rgb(0,143,242);
+        background: rgb(0,143,242);
+background: linear-gradient(90deg, rgba(0,143,242,1) 0%, rgba(0,255,179,1) 100%);}
+    .container{
+    }
+    .layout{
+        margin: 50px auto;
+        width: 350px;
+        height: 700px;
+        background-color: aliceblue;
+        border-radius: 10px;
+        box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+
+    }
+    header{
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        padding: 0 30px ;
+        padding-top: 20px;
+       
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        background-color: #2ddda0;
+        color: aliceblue;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    svg{
+        padding: 0;
+        margin: 0;
+    }
+    .isi{
+        margin: 0 80px;
+    }
+    .isi p{
+        font-size: 20px;
+    }
+    #submit{
+        margin: 0 200px;
+        width: 100px;
+        height: 35px;
+        background-color: #2ddda0;
+        border-radius: 20px;
+        border: none;
+    }
+    .cetak{
+        margin: 10px auto;
+        margin-top: 0px;
+        width: 100%;
+        height: max-content;
+        background-color: #2ddda0;
+        text-align: center;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;animation: cetak 2s;
+      
+    }
+
+    @keyframes cetak {
+        0%{width: 37%;
+            font-size: 1px;
+            opacity: 0;
+
+        }
+        100%{width: 100%;
+            opacity: 1;
+
+        };
+        
+    }
+    .cetak p{
+        font-size: 25px;
+    }
+    
+    strong{font-size: 20px;}
+    #hasil{
+    }
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="layout">
+            <header class="">Program menentukan hari berdasarkan tanggal </header>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#2ddda0" fill-opacity="1" d="M0,32L60,64C120,96,240,160,360,192C480,224,600,224,720,202.7C840,181,960,139,1080,106.7C1200,75,1320,53,1380,42.7L1440,32L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path></svg>
+            <div class="isi">
+                <p>Masukkan tanggal :</p>
+                <input type="number" name="" id="hari">
+                <br>
+                <p>Masukkan Bulan :</p>
+                <input type="number" name="" id="bulan">
+                <br>
+                <p>Masukkan Tahun :</p>
+                <input type="number" name="" id="tahun">
+                <br>
+                
+            </div>
+            <p id="hasil"></p>
+            <input type="submit" value="Cek hari" id="submit" onclick="cekHari()">
+            
+            
+
+        </div>
+    </div>
+    
+</body>
+<script>
+    var submit = document.getElementById("submit");
+    function cekHari(){
+        var hari = document.getElementById("hari").value;
+        if(hari > 31){
+            alert("masukkan tanggal yang benar");
+            hari = NaN;
+        }else{};
+        var bulan = document.getElementById("bulan").value;
+        if(bulan < 1){
+            bulan*10;
+        }else if(bulan > 12){
+            alert("masukkan bulan yang benar");
+            hari = NaN;
+        }
+        else{};
+        
+        var tahun = document.getElementById("tahun").value;
+        var hasil = document.getElementById("hasil");
+        
+
+        kode=[0,3,3,6,1,4,6,2,5,0,3,5];
+        kodeHari=['jumat','sabtu','minggu','senin','selasa','rabu','kamis'];
+        month= bulan-1;
+        bulann=kode[month];
+        console.log(bulann);
+
+        rumus= parseInt(tahun)+(parseInt(tahun)/4)+parseInt(hari)+parseInt(bulann);
+        lahir = parseInt(rumus) %7;
+        hariLahir= kodeHari[lahir];
+        console.log(hariLahir)
+
+        hasil.innerHTML=(`<div class="cetak">
+        <p>Hari pada tanggal
+        <br><strong>${hari}-${bulan}-${tahun}</strong></br>
+        adalah hari <strong>${hariLahir}</strong></p>
+    </div>
+        `)   
+    }
+    
+
+
+</script>
+</html>
